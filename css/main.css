@@ -1,12 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 body {
     overflow: hidden;
+    font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
     background-color: white;
 }
 
+.title {
+    text-align: center;
+}
+
+.grid {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1250px;
+    background-color: white;
+}
+
+@media (max-width: 1250px) {
+    .grid {
+        width: 940px;
+    }
+}
+
+@media (max-width: 940px) {
+    .grid {
+        width: 630px;
+    }
+}
+
+@media (max-width: 630px) {
+    .grid {
+        width: 320px;
+    }
+}
+
 .item {
-    width: 200px;
+    position: relative;
+    display: inline-block;
+    width: 300px;
     height: 250px;
-    /*box-shadow: 0px 0px 20px;*/
+    margin: 5px;
+    /*border: solid lightgray 1px;*/
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 15px #888888;
+}
+
+.model {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.name {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+.author {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: gray;
 }

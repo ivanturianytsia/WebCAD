@@ -8,8 +8,8 @@ var Preview = function(file) {
 	this.name = file.name;
 	this.path = file.path;
 
-	var getRandomBrightColor = function() {
-		var letters = '6789ABCDEF';
+	var getRandomDarkColor = function() {
+		var letters = '3456789AB';
 		var color = '#';
 		for (var i = 0; i < 6; i++) {
 			color += letters[Math.floor(Math.random() * letters.length)];
@@ -24,6 +24,7 @@ var Preview = function(file) {
 			antialias: true
 		});
 		that.renderer.setSize(previewHeight, previewWidth);
+		that.renderer.setClearColor(0xffffff, 1);
 		document.getElementById('model-' + that.id).appendChild(that.renderer.domElement);
 
 		// Scene
@@ -44,7 +45,7 @@ var Preview = function(file) {
 
 		loader.load(that.path, function(bufferGeometry) {
 			var material = new THREE.MeshPhongMaterial({
-				color: getRandomBrightColor(),
+				color: getRandomDarkColor(),
 				specular: 0x111111,
 				shininess: 200
 			});
@@ -68,17 +69,33 @@ var Preview = function(file) {
 var files = [{
 	id: "1",
 	name: "Balanced die",
+	author: "Anonymus",
 	path: "/models/die.stl"
 }, {
 	id: "2",
 	name: "Tie fighter",
+	author: "Anonymus",
+	path: "/models/tie.stl"
+}, {
+	id: "3",
+	name: "Balanced die",
+	author: "Anonymus",
+	path: "/models/die.stl"
+}, {
+	id: "4",
+	name: "Tie fighter",
+	author: "Anonymus",
 	path: "/models/tie.stl"
 }]
 
-files.forEach(function(file) {
+var previews = files.map(function(file) {
 	var grid = document.getElementById('grid');
-	grid.innerHTML = grid.innerHTML + "<div class='item'><div id='model-" + file.id + "'></div><p>" + file.name + "</p></div>";
+	grid.innerHTML = grid.innerHTML + "<div class='item'><div class='model' id='model-" + file.id + "'></div><span class='name'>" + file.name + "</span><span class='author'>" + file.author + "</span></div>";
 	var item = new Preview(file);
 
+	return item;
+})
+
+previews.forEach(function(item) {
 	item.init();
 })
