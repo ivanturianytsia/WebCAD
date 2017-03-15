@@ -8,6 +8,15 @@ var Preview = function(file) {
 	this.name = file.name;
 	this.path = file.path;
 
+	var getRandomBrightColor = function() {
+		var letters = '6789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * letters.length)];
+		}
+		return color;
+	}
+
 	this.init = function() {
 
 		// Renderer
@@ -35,7 +44,7 @@ var Preview = function(file) {
 
 		loader.load(that.path, function(bufferGeometry) {
 			var material = new THREE.MeshPhongMaterial({
-				color: 0xff5533,
+				color: getRandomBrightColor(),
 				specular: 0x111111,
 				shininess: 200
 			});
@@ -58,17 +67,17 @@ var Preview = function(file) {
 
 var files = [{
 	id: "1",
-	name: "Tie fighter",
-	path: "/models/tie.stl"
-}, {
-	id: "2",
 	name: "Balanced die",
 	path: "/models/die.stl"
+}, {
+	id: "2",
+	name: "Tie fighter",
+	path: "/models/tie.stl"
 }]
 
 files.forEach(function(file) {
-	var grid = document.getElementById('grid')
-	grid.innerHTML = grid.innerHTML + "<div class='item'><div id='model-" + file.id + "'></div></div>";
+	var grid = document.getElementById('grid');
+	grid.innerHTML = grid.innerHTML + "<div class='item'><div id='model-" + file.id + "'></div><p>" + file.name + "</p></div>";
 	var item = new Preview(file);
 
 	item.init();
