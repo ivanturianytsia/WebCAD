@@ -1,0 +1,18 @@
+{
+  "name": "WebCAD_project",
+  "authors": [
+    "ivanturianytsia <vanyaturianitsa@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
